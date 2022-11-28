@@ -1,0 +1,12 @@
+[submodule "backend"]
+	path = backend
+	url = https://github.com/phamthainb/spk-backend.git
+[submodule "smart-contract/app"]
+	path = smart-contract/app
+	url = https://github.com/tungleanh92/spk-app
+[submodule "smart-contract/token"]
+	path = smart-contract/token
+	url = https://github.com/tungleanh92/spk-token-v2
+[submodule "smart-contract/stake"]
+	path = smart-contract/stake
+	url = https://github.com/tungleanh92/spk-stake
