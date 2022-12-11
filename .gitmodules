@@ -10,3 +10,6 @@
 [submodule "smart-contract/stake"]
 	path = smart-contract/stake
 	url = https://github.com/tungleanh92/spk-stake
+[submodule "frontend"]
+	path = frontend
+	url = https://github.com/huynguyen1212/spk-frontend.git
