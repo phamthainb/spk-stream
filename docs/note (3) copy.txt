@@ -1,0 +1,36 @@
+learner: tungleanh.testnet 
+advisor: dev-1669018198583-29903555965521
+
+cargo build --target wasm32-unknown-unknown --release
+
+near dev-deploy ./target/wasm32-unknown-unknown/release/fungible_token.wasm
+
+token contract: token.spk-stream.testnet
+near call token.spk-stream.testnet new_default_meta '{"total_supply": "100000000000000000000000000000"}' --accountId token.spk-stream.testnet
+
+stake contract: stake.spk-stream.testnet
+near call stake.spk-stream.testnet new '{"_token_address": "token.spk-stream.testnet"}' --accountId stake.spk-stream.testnet
+
+near call token.spk-stream.testnet storage_deposit --accountId dev-1669018198583-29903555965521 --depositYocto 1000000000000000000000000
+
+near call token.spk-stream.testnet ft_transfer '{"receiver_id": "tungleanh.testnet","amount": "100000000000000000000000", "memo": "None" }' --accountId token.spk-stream.testnet --depositYocto 1
+
+
+
+stake
+near call token.spk-stream.testnet ft_transfer_call '{"receiver_id": "stake.spk-stream.testnet", "amount": "10000000", "memo": "None", "msg": "None"}' --accountId dev-1669018198583-29903555965521 --depositYocto 1 --gas=75000000000000
+
+near call dev-1668735602026-81766650624861 unstake_token '{"_amount": "10000000"}' --accountId tungleanh.testnet --depositYocto 1
+
+near view stake.spk-stream.testnet get_staked_amount '{"_advisor_id": "tungleanh.testnet"}'
+
+near view token.spk-stream.testnet ft_balance_of '{"account_id": "tungleanh.testnet"}'
+
+Version nead signature
+app contract: dev-1669022432132-58804567266197 (branch main)
+near call dev-1669022432132-58804567266197 new '{"_verified_amount": "1", "_token_address": "token.spk-stream.testnet", "_staking_address": "stake.spk-stream.testnet"}' --accountId dev-1669022432132-58804567266197
+
+
+Version not need signature
+app contract: dev-1669349830892-52864076530996 (branch dev)
+near call dev-1669349830892-52864076530996 new '{"_verified_amount": "1", "_token_address": "token.spk-stream.testnet", "_staking_address": "stake.spk-stream.testnet"}' --accountId dev-1669349830892-52864076530996
